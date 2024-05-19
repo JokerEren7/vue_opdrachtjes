@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mijl-Kilometer Converter</title>
+</head>
+<body>
+    <div id="app">
+        <label for="kilometer">Kilometer</label>
+        <input type="number" v-model="kilometer" @input="convertToMiles">
+
+        <label for="mijl">Mijl</label>
+        <input type="number" v-model="mijl" @input="convertToKilometers">
+
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    mijl: "",
+                    kilometer: ""
+                }
+            },
+            methods: {
+                convertToMiles() {
+                    if (this.kilometer !== "") {
+                        this.mijl = (this.kilometer * 1.61).toFixed(2);
+                    } else {
+                        this.mijl = "";
+                    }
+                },
+                convertToKilometers() {
+                    if (this.mijl !== "") {
+                        this.kilometer = (this.mijl * 1.61).toFixed(2);
+                    } else {
+                        this.kilometer = "";
+                    }
+                }
+            }
+        });
+        app.mount("#app");
+    </script>
+</body>
+</html>

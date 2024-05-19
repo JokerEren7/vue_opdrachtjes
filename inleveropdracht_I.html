@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groepsindeling</title>
+    <style>
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    height: 100vh;
+}
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .group {
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 45%;
+        }
+        .group h2 {
+            text-align: center;
+        }
+        .group ul {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 10px;
+        }
+        .group li {
+            padding: 5px 0;
+            cursor: pointer;
+        }
+        .group li:hover {
+            background-color: #f0f0f0;
+        }
+        .group input[type="text"] {
+            width: calc(100% - 20px); /* width - padding */
+            margin-bottom: 5px;
+            margin-right: 10px;
+            padding: 5px;
+        }
+        .group input[type="submit"] {
+            width: 100%;
+            padding: 5px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <div class="container">
+        <div class="group">
+            <h2>Groep A</h2>
+            <ul>
+                <li v-for="member in groupA" @click="moveToGroupB(member)">{{ member }}</li>
+            </ul>
+            <input type="text" v-model="newMemberA" placeholder="Voeg lid toe aan Groep A">
+            <input type="submit" @click="addMemberToGroupA" value="Toevoegen aan Groep A">
+        </div>
+        <div class="group">
+            <h2>Groep B</h2>
+            <ul>
+                <li v-for="member in groupB" @click="moveToGroupA(member)">{{ member }}</li>
+            </ul>
+            <input type="text" v-model="newMemberB" placeholder="Voeg lid toe aan Groep B">
+            <input type="submit" @click="addMemberToGroupB" value="Toevoegen aan Groep B">
+        </div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/vue"></script>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                groupA: ['johan', 'hasan', 'bigmac'],
+                groupB: ['kees','mees','mohamed'],
+                newMemberA: '',
+                newMemberB: ''
+            };
+        },
+        methods: {
+            moveToGroupB(member) {
+                this.groupA = this.groupA.filter(item => item !== member);
+                this.groupB.push(member);
+            },
+            moveToGroupA(member) {
+                this.groupB = this.groupB.filter(item => item !== member);
+                this.groupA.push(member);
+            },
+            addMemberToGroupA() {
+                if (this.newMemberA.trim() !== '') {
+                    this.groupA.push(this.newMemberA);
+                    this.newMemberA = ''; // Clear input field
+                }
+            },
+            addMemberToGroupB() {
+                if (this.newMemberB.trim() !== '') {
+                    this.groupB.push(this.newMemberB);
+                    this.newMemberB = ''; // Clear input field
+                }
+            }
+        }
+    });
+    app.mount("#app");
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <img style="width: 250px;" v-bind:src="imagesmiley" />
+
+        <button v-on:click="changeSmiley">Smile</button>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+
+        const app = Vue.createApp({
+            data() {
+                return {
+                    smileyImages: [
+                        "images/smiley.jpg",
+                        "images/huilemoji.jpg",
+                        "images/mohammed.jpg",
+
+
+                    ],
+                    currentImageIndex: 0
+                }
+            },
+            computed: {
+                imagesmiley() {
+                    return this.smileyImages[this.currentImageIndex];
+                }
+            },
+            methods: {
+                changeSmiley() {
+                    this.currentImageIndex = (this.currentImageIndex + 1) % this.smileyImages.length;
+                    console.log("Changed image to:", this.imagesmiley);
+                }
+
+            }
+        });
+        app.mount("#app");
+    </script>
+</body>
+
+</html>

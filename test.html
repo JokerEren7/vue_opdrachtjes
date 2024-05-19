@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1 v-show="toon">{{tekst}}</h1> 
+            <input v-model="tekst" /> 
+        <button v-on:click="schakel">schakel</button> 
+      </div>
+      <script src="https://unpkg.com/vue"></script>
+      <script>
+        const app = Vue.createApp({
+          data() { 
+            return {
+              tekst: "Hallo wereld!",
+              toon: true
+            }
+          },
+          methods: { 
+            schakel() {
+              console.log("Schakel " + !this.toon), 
+                this.toon = !this.toon
+            }
+          }
+        })
+        app.mount("#app") 
+      </script>
+      
+</body>
+</html>

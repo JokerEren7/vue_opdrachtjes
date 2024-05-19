@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>oefening</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <div id="app">
+    <label for="naam">Naam:</label>
+    <input v-model="eerstenaam">
+
+    <label for="tussenvoegsel">tussenvoegsel</label>
+    <input v-model="tussenvoegsel">
+
+    <label for="achternaam">achternaam</label>
+    <input v-model="achternaam">
+
+    <p>{{eerstenaam}} {{tussenvoegsel}} {{achternaam}}</p>
+  </div>
+</body>
+<script src="https://unpkg.com/vue"></script> 
+<script>
+  const app = Vue.createApp({ 
+    data() { 
+      return {
+        eerstenaam: "",
+        tweedevoegsel: "",
+        achternaam: "",
+        toon: true
+      }
+    }
+    
+  })
+  app.mount("#app") 
+</script>
+</html>
